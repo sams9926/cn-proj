@@ -1,0 +1,112 @@
+Prompt: Encrypted Linear Algebra over UDP with Custom Reliability Layer
+
+Goal:
+Develop a Python-based client-server system capable of performing linear algebra operations on large matrices over UDP, with encryption, custom reliability (ACKs, sequence numbers, retransmissions), and simulation/real-world testing via NS-3/OpenNetSim and Wi-Fi.
+
+System Components:
+
+Client:
+
+Accepts user input for matrix operations (add, subtract, scalar multiply, matrix multiply, transpose, inverse, Gaussian elimination, LU decomposition, SVD, determinant, rank, eigenvalues/eigenvectors, dot product, solving systems of linear equations).
+
+Encrypts matrix data before sending.
+
+Sends encrypted data to the server via UDP.
+
+Implements custom reliability:
+
+Stop-and-Wait initially → upgrade to Sliding Window for efficiency.
+
+Handles retransmissions on timeout.
+
+Displays server results after decryption.
+
+Server:
+
+Receives encrypted matrices over UDP.
+
+Decrypts and computes the requested operation using NumPy.
+
+Encrypts and sends results back to the client.
+
+Forwards a copy of received and sent packets to the Moderator.
+
+Moderator:
+
+Observes forwarded packets.
+
+Prints:
+
+Sequence numbers
+
+Sender ID
+
+Operation type
+
+Packet size
+
+Demonstrates encryption, UDP traffic, and reliability behavior.
+
+Functional Requirements:
+
+Matrix Operations Supported:
+
+Arithmetic: Addition, Subtraction, Scalar Multiplication, Matrix Multiplication
+
+Unary: Transpose, Inverse
+
+Transformations/Decompositions: Gaussian Elimination, LU Decomposition, SVD
+
+Other: Determinant, Rank, Eigenvalues/Eigenvectors
+
+Systems of Linear Equations: Solve Ax = b
+
+Vector Operations: Dot Product
+
+Support large matrices efficiently (e.g., 1000x1000 or larger)
+
+Networking Requirements:
+
+UDP-based transport.
+
+Encrypted payloads (AES, RSA, or similar).
+
+Custom reliability layer:
+
+Sequence numbers
+
+Acknowledgments
+
+Retransmissions
+
+Stop-and-Wait → Sliding Window transition
+
+Demonstration of retransmissions and packet loss handling.
+
+Simulation / Validation:
+
+Use NS-3 or OpenNetSim to simulate:
+
+Packet loss
+
+Network delays
+
+Throughput
+
+Test behavior in real Wi-Fi network to validate simulation results.
+
+Output / Demonstration:
+
+Client: Matrix operation results
+
+Moderator: Logs of sequence numbers, operations, packet sizes, and retransmissions
+
+Visualization of encryption and UDP reliability layer in action.
+
+Optional Enhancements:
+
+Performance metrics: latency, throughput, retransmission rate
+
+Logging and CSV export of results for analysis
+
+GUI for client to choose operation and visualize matrices
